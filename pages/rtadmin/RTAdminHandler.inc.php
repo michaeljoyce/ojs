@@ -91,6 +91,16 @@ class RTAdminHandler extends Handler {
 		RTSharingHandler::saveSettings();
 	}	
 
+	function configureAnnotations() {
+		import('pages.rtadmin.RTAnnotationsHandler');
+		RTAnnotationsHandler::settings();
+	}
+
+	function saveConfigureAnnotations() {
+		import('pages.rtadmin.RTAnnotationsHandler');
+		RTAnnotationsHandler::saveSettings();
+	}
+
 	function validateUrls($args) {
 		$this->validate();
 

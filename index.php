@@ -60,6 +60,12 @@
 define('INDEX_FILE_LOCATION', __FILE__);
 require('lib/pkp/includes/bootstrap.inc.php');
 
+date_default_timezone_set('America/Los_Angeles');
+function logMsg($string = "", $trace = false) {
+    $date = date('d.m.Y h:i:s');
+    error_log($date . " - " . $string . "\n", 3, "/Users/michael/Sites/ojs2/ojs.log");
+}
+
 // Serve the request
 $application =& PKPApplication::getApplication();
 $application->execute();

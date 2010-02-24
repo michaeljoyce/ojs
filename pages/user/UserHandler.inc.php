@@ -74,7 +74,10 @@ class UserHandler extends Handler {
 
 			$templateMgr->assign_by_ref('userJournals', $userJournals);
 			$templateMgr->assign('showAllJournals', 1);
-
+            //fetch all of the users annotations, and assign them to a template variable here.
+            $lemmaDAO =& DAORegistry::getDAO('LemmaDAO');
+            $lemmas = $lemmaDAO->getLemmasByUser($user->getId(), 4);
+            $templateMgr->assign_by_ref('userLemmas', $lemmas);
 		} else { // Currently within a journal's context.
 			$journalId = $journal->getId();
 			
@@ -104,6 +107,10 @@ class UserHandler extends Handler {
 			$templateMgr->assign('allowRegReviewer', $journal->getSetting('allowRegReviewer'));
 
 			$templateMgr->assign_by_ref('userJournals', $userJournals);
+            //fetch the users annotations for this journal, and assign them to a template variable here.
+            $lemmaDAO =& DAORegistry::getDAO('LemmaDAO');
+            $lemmas = $lemmaDAO->getLemmasByUserJournal($user->getId(), $journal->getId(), 4);
+            $templateMgr->assign_by_ref('userLemmas', $lemmas);
 		}
 
 		$templateMgr->assign('isValid', $isValid);

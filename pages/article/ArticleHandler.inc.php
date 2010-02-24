@@ -20,6 +20,7 @@ import('rt.ojs.RTDAO');
 import('rt.ojs.JournalRT');
 import('handler.Handler');
 import('rt.ojs.SharingRT');
+import('rt.ojs.AnnotationsRT');
 
 class ArticleHandler extends Handler {
 	/** journal associated with the request **/
@@ -317,6 +318,11 @@ class ArticleHandler extends Handler {
 			$templateMgr->assign('sharingButtonWidth', $btnWidth);
 			$templateMgr->assign('sharingButtonHeight', $btnHeight);
 		}
+		
+		if($journalRt->getAnnotationsEnabled()) {
+		  $templateMgr->assign('annotationsEnabled', $journalRt->getAnnotationsEnabled());
+		}
+
 		$templateMgr->display('article/article.tpl');
 	}
 
@@ -388,6 +394,10 @@ class ArticleHandler extends Handler {
 			if ($version) {
 				$templateMgr->assign_by_ref('version', $version);
 			}
+		}
+
+		if($journalRt->getAnnotationsEnabled()) {
+		  $templateMgr->assign('annotationsEnabled', $journalRt->getAnnotationsEnabled());
 		}
 
 		$templateMgr->display('rt/rt.tpl');

@@ -37,6 +37,8 @@ class JournalRT extends RT {
 	var $sharingLogoBackground;
 	var $sharingLogoColor;
 
+    var $annotationsEnabled;
+
 	function JournalRT($journalId) {
 		$this->setJournalId($journalId);
 	}
@@ -81,6 +83,9 @@ class JournalRT extends RT {
 	function getSharingLogoColor() {
 		return $this->sharingLogoColor;
 	}
+	function getAnnotationsEnabled() {
+	  return $this->annotationsEnabled;
+	}
 
 	function setSharingEnabled($sharingEnabled) {
 		$this->sharingEnabled = $sharingEnabled;
@@ -120,6 +125,10 @@ class JournalRT extends RT {
 	
 	function setSharingLogoColor($sharingLogoColor) {
 		$this->sharingLogoColor = $sharingLogoColor;
+	}
+
+	function setAnnotationsEnabled($annotationsEnabled) {
+	  $this->annotationsEnabled = $annotationsEnabled;
 	}
 }
 

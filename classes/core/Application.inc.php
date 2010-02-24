@@ -79,6 +79,7 @@ class Application extends PKPApplication {
 	 */
 	function getDAOMap() {
 		return array_merge(parent::getDAOMap(), array(
+                        'AnnotationSearchDAO' => 'annotation.AnnotationSearchDAO',
 			'AnnouncementDAO' => 'announcement.AnnouncementDAO',
 			'AnnouncementTypeDAO' => 'announcement.AnnouncementTypeDAO',
 			'ArticleEmailLogDAO' => 'article.log.ArticleEmailLogDAO',
@@ -91,6 +92,7 @@ class Application extends PKPApplication {
 			'ArticleSearchDAO' => 'search.ArticleSearchDAO',
 			'AuthorDAO' => 'article.AuthorDAO',
 			'AuthorSubmissionDAO' => 'submission.author.AuthorSubmissionDAO',
+                        'BookmarkDAO' => 'annotation.BookmarkDAO',
 			'CitationDAO' => 'citation.CitationDAO',
 			'CommentDAO' => 'comment.CommentDAO',
 			'CopyeditorSubmissionDAO' => 'submission.copyeditor.CopyeditorSubmissionDAO',
@@ -104,6 +106,8 @@ class Application extends PKPApplication {
 			'JournalSettingsDAO' => 'journal.JournalSettingsDAO',
 			'JournalStatisticsDAO' => 'journal.JournalStatisticsDAO',
 			'LayoutEditorSubmissionDAO' => 'submission.layoutEditor.LayoutEditorSubmissionDAO',
+                        'LemmaDAO' => 'annotation.LemmaDAO',
+                        'NoteDAO' => 'annotation.NoteDAO',  
 			'OAIDAO' => 'oai.ojs.OAIDAO',
 			'OJSCompletedPaymentDAO' => 'payment.ojs.OJSCompletedPaymentDAO',
 			'PluginSettingsDAO' => 'plugins.PluginSettingsDAO',

@@ -237,4 +237,53 @@
 </ul>
 </div>
 
+<div id="myAnnotations">
+  <h3>{translate key="user.myRecentAnnotations"}</h3>
+  <p><a href="{url page="annotation"}">{translate key="user.allAnnotationsLink"}</a></p>
+    <table width="100%" border="0" cellspacing="0" cellpadding="2" class="info tocArticle">
+    {foreach from=$userLemmas item=lemma}
+    {assign var=article value=$lemma->getLemmaArticle()}
+    {assign var=journal value=$lemma->getLemmaJournal()}
+    {assign var=articlePath value=$article->getBestArticleId($currentJournal)}
+    <tr>
+      <td width="70%"><span class="annotation_lemma {$lemma->getLemmaType()}">&#187;</span> {$lemma->getLemmaText()|escape:"html"}</td>
+      <td width="30%" align="right" valign="top">
+        [<a href="{url journal=$journal->getPath() page="annotation" op="addNote" path=$lemma->getArticleId()|to_array:$lemma->getGalleyId():$lemma->getLemmaId()}">Add note</a>]
+        [<a href="{url journal=$journal->getPath() page="annotation" op="deleteLemma" path=$lemma->getArticleId()|to_array:$lemma->getGalleyId():$lemma->getLemmaId()}">Delete Lemma</a>]
+      </td>
+    </tr>
+    <tr>
+      <td width="70%" class="tocTitle">In <a href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}">{$article->getLocalizedTitle()|strip_unsafe_html}</a></td>
+      <td width="30%" class="tocGalleys" align="right" valign="top">
+			{foreach from=$article->getLocalizedGalleys() item=galley name=galleyList}
+            <a href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath|to_array:$galley->getBestGalleyId($journal)}" class="file">{$galley->getGalleyLabel()|escape}</a>
+            {/foreach}
+      </td>
+    </tr>
+    <tr>
+      <td width="70%" class="tocAuthors">
+			{foreach from=$article->getAuthors() item=author name=authorList}
+				{$author->getFullName()|escape}{if !$smarty.foreach.authorList.last},{/if}
+			{/foreach}
+      </td>
+      <td width="30%" class="tocPages" align="right" valign="top">{$article->getPages()|escape}</td>
+    </tr>
+    {assign var=notes value=$lemma->getLemmaNotes()}
+    {if count($notes) != 0}
+    {foreach from=$notes item=note}
+    <tr>
+      <td width="70%" align="left" valign="top" style="padding-left: 4em;">{$note->getNoteText()}</td>
+      <td width="30%" align="right" valign="top">
+        [<a href="{url journal=$journal->getPath() page="annotation" op="editNote" path=$note->getArticleId()|to_array:$note->getGalleyId():$note->getLemmaId():$note->getNoteId()}">Edit Note</a>]
+        [<a href="{url journal=$journal->getPath() page="annotation" op="deleteNote" path=$note->getArticleId()|to_array:$note->getGalleyId():$note->getLemmaId():$note->getNoteId()}">Delete Note</a>]
+      </td>
+    </tr>
+    <tr><td colspan="2" class="separator"></td></tr>
+    {/foreach}
+    {/if}
+    <tr><td colspan="2"><div class="separator"></div></td></tr>
+    {/foreach}
+  </table>
+</div>
+
 {include file="common/footer.tpl"}

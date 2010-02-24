@@ -43,6 +43,10 @@ class SearchHandler extends Handler {
 		$this->advanced();
 	}
 
+        function annotationSearch() {
+            $this->validate();
+            $this->annotation();
+        }
 	/**
 	 * Show advanced search form.
 	 */
@@ -68,6 +72,29 @@ class SearchHandler extends Handler {
 
 		$templateMgr->display('search/advancedSearch.tpl');
 	}
+
+
+        function annotation() {
+            $this->validate();
+            $this->setupTemplate(false);
+            $templateMgr =& TemplateManager::getManager();
+            $publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
+            $journalPath = null;
+            $yearRange = null;
+            if (Request::getJournal() == null) {
+			$journalDao =& DAORegistry::getDAO('JournalDAO');
+			$journals =& $journalDao->getEnabledJournalTitles();  //Enabled added
+			$templateMgr->assign('siteSearch', true);
+			$templateMgr->assign('journalOptions', array('' => Locale::Translate('search.allJournals')) + $journals);
+			$journalPath = Request::getRequestedJournalPath();
+			$yearRange = $publishedArticleDao->getArticleYearRange(null);
+	    } else {
+			$journal =& Request::getJournal();
+			$yearRange = $publishedArticleDao->getArticleYearRange($journal->getJournalId());
+	    }
+            $this->assignAdvancedSearchParameters($templateMgr, $yearRange);
+            $templateMgr->display('search/annotationSearch.tpl');
+        }
 
 	/**
 	 * Show index of published articles by author.

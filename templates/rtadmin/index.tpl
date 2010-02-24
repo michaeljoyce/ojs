@@ -43,4 +43,11 @@
 </ul>
 </div>
 
+<div id="rtAdminAnnotations">
+<h3>{translate key="rt.admin.annotations}</h3>
+<ul class="plain">
+    <li>&#187; <a href="{url op="configureAnnotations"}">{translate key="rt.admin.configureAnnotations"}</a></li>
+</ul>
+</div>
+
 {include file="common/footer.tpl"}

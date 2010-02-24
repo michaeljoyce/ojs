@@ -54,6 +54,8 @@ class RTDAO extends DAO {
 		$rt->setSharingLogoBackground($journal->getSetting("rtSharingLogoBackground") ? $journal->getSetting("rtSharingLogoBackground") : "");
 		$rt->setSharingLogoColor($journal->getSetting("rtSharingLogoColor") ? $journal->getSetting("rtSharingLogoColor") : "");
 
+		$rt->setAnnotationsEnabled($journal->getSetting("rtAnnotationsEnabled") ? $journal->getSetting("rtAnnotationsEnabled") : "");
+
 		return $rt;
 	}
 
@@ -84,6 +86,8 @@ class RTDAO extends DAO {
 		$journal->updateSetting("rtSharingLogo", $rt->getSharingLogo());
 		$journal->updateSetting("rtSharingLogoBackground", $rt->getSharingLogoBackground());
 		$journal->updateSetting("rtSharingLogoColor", $rt->getSharingLogoColor());
+
+		$journal->updateSetting("rtAnnotationsEnabled", $rt->getAnnotationsEnabled());
 
 		return true;
 	}
