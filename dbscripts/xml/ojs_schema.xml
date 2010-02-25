@@ -1673,4 +1673,149 @@
 		<field name="payment_method_plugin_name" type="C2" size="80" />
 		<descr>Logs completed (fulfilled) payments.</descr>
 	</table>
+
+       <!--
+         *
+         * Table annotation_notes
+         *
+         -->
+         <table name="annotation_notes">
+             <field name="note_id" type="I8">
+                 <KEY />
+                 <AUTOINCREMENT />
+             </field>
+             <field name="lemma_id" type="I8">
+                 <NOTNULL />
+             </field>
+             <field name="user_id" type="I8">
+                 <NOTNULL />
+             </field>
+             <field name="article_id" type="I8">
+                 <NOTNULL />
+             </field>
+             <field name="galley_id" type="I8">
+                 <NOTNULL />
+             </field>
+             <field name="date_created" type="T">
+                 <NOTNULL />
+             </field>
+             <field name="date_modified" type="T">
+                 <NOTNULL />
+             </field>
+             <field name="note_text" type="X">
+                 <NOTNULL />
+             </field>
+             <descr>User notes text in article galleys.</descr>
+             <index name="user_id_idx">
+                 <col>user_id</col>
+             </index>
+             <index name="lemma_id_idx">
+                 <col>lemma_id</col>
+             </index>
+             <index name="article_id_idx">
+                 <col>article_id</col>
+             </index>
+             <index name="galley_id_idx">
+                 <col>galley_id</col>
+             </index>
+         </table>
+
+        <!--
+         *
+         * Table annotation_lemmas
+         *
+         -->
+         <table name="annotation_lemmas">
+             <field name="lemma_id" type="I8">
+                 <KEY />
+                 <AUTOINCREMENT />
+             </field>
+             <field name="user_id" type="I8">
+                 <NOTNULL />
+             </field>
+             <field name="article_id" type="I8">
+                 <NOTNULL />
+             </field>
+             <field name="galley_id" type="I8">
+                 <NOTNULL />
+             </field>
+             <field name="date_created" type="T">
+                 <NOTNULL />
+             </field>
+             <field name="date_modified" type="T">
+                 <NOTNULL />
+             </field>
+             <field name="start_container" type="C" size="24">
+                 <NOTNULL />
+             </field>
+             <field name="end_container" type="C" size="24">
+                 <NOTNULL />
+             </field>
+             <field name="start_offset" type="I8">
+                 <NOTNULL />
+             </field>
+             <field name="end_offset" type="I8">
+                 <NOTNULL />
+             </field>
+             <field name="lemma_type" type="C" size="24">
+                 <NOTNULL />
+             </field>
+             <field name="lemma_text" type="X">
+                 <NOTNULL />
+             </field>
+             <descr>User lemmas/highlighted text in article galleys.</descr>
+             <index name="user_id_idx">
+                 <col>user_id</col>
+             </index>
+             <index name="article_id_idx">
+                 <col>article_id</col>
+             </index>
+             <index name="galley_id_idx">
+                 <col>galley_id</col>
+             </index>
+         </table>
+
+
+        <!--
+         *
+         * Table annotation_bookmarks
+         *
+         -->
+         <table name="annotation_bookmarks">
+             <field name="bookmark_id" type="I8">
+                 <KEY />
+                 <AUTOINCREMENT/>
+             </field>
+             <field name="user_id" type="I8">
+                 <NOTNULL />
+             </field>
+             <field name="article_id" type="I8">
+                 <NOTNULL />
+             </field>
+             <field name="galley_id" type="I8">
+                 <NOTNULL />
+             </field>
+             <field name="date_created" type="T">
+                 <NOTNULL />
+             </field>
+             <field name="date_modified" type="T">
+                 <NOTNULL />
+             </field>
+             <field name="container" type="C" size="24">
+                 <NOTNULL />
+             </field>
+             <field name="bookmark_type" type="C" size="24">
+                 <NOTNULL />
+             </field>
+             <descr>User bookmarks in article galleys.</descr>
+             <index name="user_id_idx">
+                 <col>user_id</col>
+             </index>
+             <index name="article_id_idx">
+                 <col>article_id</col>
+             </index>
+             <index name="galley_id_idx">
+                 <col>galley_id</col>
+             </index>
+         </table>
 </schema>
