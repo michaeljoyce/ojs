@@ -9,7 +9,7 @@
  * $Id: comment.tpl,v 1.21 2009/05/26 01:31:17 mcrider Exp $
  *}
 {strip}
-{assign var="pageTitle" value="annotations.enterNote"}
+{assign var="pageTitle" value="rt.annotations.enterNote"}
 {include file="common/header.tpl"}
 {/strip}
 

@@ -198,7 +198,14 @@ class AnnotationHandler extends Handler {
         $noteId = isset($args[3]) ? (int) $args[3] : 0;
 
         if($this->validate()) {
+            $user =& Request::getUser();
 
+            $lemmaDao =& DAORegistry::getDAO('LemmaDAO');
+
+            $lemma =& $lemmaDao->getLemma($lemmaId, $user->getId());
+            if ((! isset($lemma)) || ($lemma->getArticleId() != $articleId)) {
+                Request::redirect(null, null, 'view', array($articleId, $galleyId));
+            }
             import('annotation.form.NoteForm');
             $noteForm = new NoteForm($articleId, $galleyId, $lemmaId, $noteId);
             $noteForm->initData();
@@ -227,9 +234,16 @@ class AnnotationHandler extends Handler {
         $noteId = isset($args[3]) ? (int) $args[3] : 0;
 
         if($this->validate()) {
+            $user =& Request::getUser();
 
+            $lemmaDao =& DAORegistry::getDAO('LemmaDAO');
+
+            $lemma =& $lemmaDao->getLemma($lemmaId, $user->getId());
+            if ((! isset($lemma)) || ($lemma->getArticleId() != $articleId)) {
+                Request::redirect(null, null, 'view', array($articleId, $galleyId));
+            }
             import('annotation.form.NoteForm');
-            $noteForm = new NoteForm($articleId, $galleyId, $lemmaId, $noteId, 'annotation/noteFormDelete.tpl');
+            $noteForm = new NoteForm($articleId, $galleyId, $lemmaId, $noteId, 'annotation/NoteFormDelete.tpl');
             $noteForm->initData();
 
             if (isset($args[4]) && $args[4]=='delete') {
