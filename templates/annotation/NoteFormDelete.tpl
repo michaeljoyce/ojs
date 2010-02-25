@@ -16,14 +16,14 @@
 {include file="common/formErrors.tpl"}
 <div id="noteForm">
 <form name="submit" action="{if isset($noteId)}{url op="deleteNote" path=$articleId|to_array:$galleyId:$lemmaId:$noteId:"delete"}{/if}" method="post">
-      <p>{translate key="annotations.confirmDeleteQuestion"}</p>
+      <p>{translate key="rt.annotations.confirmDeleteQuestion"}</p>
 <table class="data" width="100%">
   <tr valign="top">
-    <td class="label" width="20%">{translate key="annotations.lemma"}</td>
+    <td class="label" width="20%">{translate key="rt.annotations.lemma"}</td>
     <td class="value" width="80%">{$lemma->getLemmaText()}</td>
   </tr>
 	<tr valign="top">
-		<td class="label" width="20%">{translate key="annotations.noteContent"}</td>
+		<td class="label" width="20%">{translate key="rt.annotations.noteContent"}</td>
 		<td class="value" width="80%">{$note->getNoteText()}</td>
 	</tr>
 </table>

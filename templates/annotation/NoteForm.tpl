@@ -18,11 +18,11 @@
 <form name="submit" action="{if isset($noteId)}{url op="editNote" path=$articleId|to_array:$galleyId:$lemmaId:$noteId:"save"}{else}{url op="addNote" path=$articleId|to_array:$galleyId:$lemmaId:"save"}{/if}" method="post">
 <table class="data" width="100%">
   <tr valign="top">
-    <td class="label" width="20%">{translate key="annotations.lemma"}</td>
+    <td class="label" width="20%">{translate key="rt.annotations.lemma"}</td>
     <td class="value" width="80%">{$lemma->getLemmaText()}</td>
   </tr>
 	<tr valign="top">
-		<td class="label" width="20%"><label for="noteContent">{translate key="annotations.noteContent"}</label></td>
+		<td class="label" width="20%"><label for="noteContent">{translate key="rt.annotations.noteContent"}</label></td>
 		<td class="value" width="80%">
 			<textarea class="textArea" name="noteText" id="noteText" rows="5" cols="60">{if isset($note)}{$note->getNoteText()}{/if}</textarea>
 		</td>
