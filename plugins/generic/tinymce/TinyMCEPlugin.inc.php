@@ -311,7 +311,13 @@ class TinyMCEPlugin extends GenericPlugin {
 			case 'manager/updateSubscriptionType':
 				$fields[] = 'description';
 				break;
-			case 'comment/add': $fields[] = 'commentBody'; break;
+			case 'comment/add':
+                $fields[] = 'commentBody';
+                break;
+            case 'annotation/editNote':
+            case 'annotation/addNote':
+                $fields[] = 'noteText';
+                break;
 		}
 		HookRegistry::call('TinyMCEPlugin::getEnableFields', array(&$this, &$fields));
 		return $fields;
